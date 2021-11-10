@@ -1,24 +1,20 @@
-
-import 'package:cmaminiproject/homepage.dart';
-import 'package:cmaminiproject/reset.dart';
-import 'package:cmaminiproject/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
 
-class  LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+
+
+class ResetPage extends StatefulWidget {
+  const ResetPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _ResetPageState createState() => _ResetPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-
-  TextEditingController emailController=TextEditingController();
-  TextEditingController passwordController=TextEditingController();
+class _ResetPageState extends State<ResetPage> {
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,8 +28,8 @@ class _LoginPageState extends State<LoginPage> {
           ),),
         centerTitle: true,
       ),
-
       body: SingleChildScrollView(
+
         child: Card(
           shadowColor: Colors.black12,
           semanticContainer: true,
@@ -46,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                   initialPage: 1,
                   indicatorColor: Colors.pinkAccent,
                   indicatorBackgroundColor: Colors.blueGrey,
-                  height: 350,
+                  height: 460,
                   width: double.infinity,
                   children: [
                     Image.asset(
@@ -71,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
 
                 const Center(
-                  child: Text("Sign In Here",
+                  child: Text("Sign Up Here",
                     style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 20
@@ -81,80 +77,34 @@ class _LoginPageState extends State<LoginPage> {
                   keyboardType: TextInputType.emailAddress,
                   textAlign: TextAlign.left,
                   decoration: const InputDecoration(
-                    hintText: "Enter your email",
-                  ),
-                  controller: emailController,
-
-
-                ),
-                TextFormField(
-                  keyboardType: TextInputType.visiblePassword,
-                 textAlign: TextAlign.left,
-                  decoration: const InputDecoration(
                     hintText: "Enter the your password",
                   ),
-                  obscureText: true,
-                  controller: passwordController,
+                  controller: emailController,
 
                 ),
                 const SizedBox(
                   height: 12,
                 ),
                 FlatButton(
-                  onPressed: ()  async {
+                  onPressed: () async{
                     final String email = emailController.text.trim();
-                    final String password = passwordController.text.trim();
+
 
 
                     if(email.isEmpty){
                       print("Email is empty");
                     }
-                    if(password.isEmpty){
-                      print("Password is empty");
-                    }
+                    await FirebaseAuth.instance.sendPasswordResetEmail(email: emailController.text).then((value){
+                      print("Successfully Sent Reset");
+                      Navigator.pop(context);
 
-                    FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passwordController.text);
-
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>const HomePage()));
+                    });
                   },
                   color: Colors.blueGrey,
-                  child: const Text("Sign In",
+                  child: const Text("Reset",
                     style: TextStyle(
                       fontWeight: FontWeight.normal,
                     ),),
-                ),
-                const Text("Don't have an account already?"),
-                Row(
-                  children: [
-                    const SizedBox(
-                      width: 80,
-                    ),
-
-                    FlatButton(
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const SignUpPage()));
-                      },
-                      color: Colors.blueGrey,
-                      child: const Text("Sign Up",
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                        ),),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-
-                    FlatButton(
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const ResetPage()));
-                      },
-                      color: Colors.blueGrey,
-                      child: const Text("Reset Password",
-                        style: TextStyle(
-                          fontWeight: FontWeight.normal,
-                        ),),
-                    )
-                  ],
                 ),
               ],
             ),

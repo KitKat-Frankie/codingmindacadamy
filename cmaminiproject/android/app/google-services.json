@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "858121191147",
+    "project_id": "cmaminiproject",
+    "storage_bucket": "cmaminiproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858121191147:android:6ca459bec38ed5915f48ae",
+        "android_client_info": {
+          "package_name": "com.example.cmaminiproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858121191147-qbds9o26bj6vlks12q2m996ia98mv11u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNQnPEHpr3MyyC7HBkyXn5EwEWSjUm6Hs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858121191147-qbds9o26bj6vlks12q2m996ia98mv11u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
