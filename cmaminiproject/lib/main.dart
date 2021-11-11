@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       initialRoute: "/",
       routes: {
-        "/":(context) =>const LoginPage(),
+        "/":(context) =>const HomePage(),
         "/Login":(context) => const LoginPage(),
         "/Home":(context) =>const HomePage(),
 
